@@ -17,11 +17,12 @@ way.
 1. Install [Python 3.10+](https://www.python.org/downloads/) if you
    don't have it (make sure to check "Add python.exe to PATH" during
    install on Windows).
-2. Install dependencies:
+2. Download and unzip the files then open terminal in that unzipped folder
+3. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
-3. **(Optional)** Enable the Discogs fallback by getting a free
+4. **(Optional)** Enable the Discogs fallback by getting a free
    personal access token from
    [discogs.com/settings/developers](https://www.discogs.com/settings/developers),
    then setting it as an environment variable:
