@@ -62,14 +62,3 @@ In batch mode, a match is only written automatically if MusicBrainz's
 own search confidence score is high **and** (when a filename/tag gave
 an artist hint) the returned artist actually matches it. Anything
 below that bar is shown to you the same way single-file mode works.
-
-## Project structure
-
-```
-fix_metadata.py       entry point -- single file mode, batch mode, confirm prompt
-tagging.py             read/write tags across MP3, MP4/M4A, FLAC
-sources/
-  musicbrainz.py        MusicBrainz search + metadata + cover art
-  discogs.py             Discogs fallback for fields MusicBrainz missed
-requirements.txt
-```
