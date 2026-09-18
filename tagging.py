@@ -10,8 +10,7 @@ try:
     )
 except ModuleNotFoundError as error:
     raise ModuleNotFoundError(
-        "The 'mutagen' package is required. Install it with "
-        "'python -m pip install mutagen'."
+        
     ) from error
  
 FIELDS = ["title", "artist", "album", "albumartist", "genre", "year", "tracknumber"]
@@ -19,7 +18,7 @@ AUDIO_EXTENSIONS = (".mp3", ".m4a", ".mp4", ".flac")
  
  
 def detect_format(path):
-    """Inspect the actual file contents rather than trusting the extension."""
+    
     audio = MutagenFile(path)
     if audio is None:
         raise ValueError("Unsupported audio format or file is not an audio file.")
@@ -27,7 +26,7 @@ def detect_format(path):
  
  
 def read_existing_tags(path):
-    """Pull whatever tags already exist, via mutagen's generic 'easy' keys."""
+   
     tags = {}
     try:
         easy = MutagenFile(path, easy=True)
@@ -42,7 +41,7 @@ def read_existing_tags(path):
  
  
 def guess_from_filename(path):
-    """Fallback hint if tags are missing: 'Artist - Title.ext' naming."""
+    
     name = os.path.splitext(os.path.basename(path))[0]
     if " - " in name:
         artist, title = name.split(" - ", 1)
