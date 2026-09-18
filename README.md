@@ -11,9 +11,6 @@ is detected from the file's actual contents, not its extension, so a
 mislabeled `.mp4` that's really an `.m4a` is handled correctly either
 way.
 
-This only edits the file itself. It does not add anything to Apple
-Music (or any other player) automatically -- copy/import the finished
-file into your library separately.
 
 ## Setup
 
