@@ -53,9 +53,3 @@ At the end of a folder run you'll get a summary table showing what
 happened to every file (`auto-tagged`, `confirmed`, `skipped`,
 `no match`, or `error`).
 
-## How it decides what to auto-tag
-
-In batch mode, a match is only written automatically if MusicBrainz's
-own search confidence score is high **and** (when a filename/tag gave
-an artist hint) the returned artist actually matches it. Anything
-below that bar is shown to you the same way single-file mode works.
