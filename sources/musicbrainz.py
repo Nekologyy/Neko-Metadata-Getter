@@ -76,8 +76,7 @@ def extract_metadata(recording):
                 if track.get("recording", {}).get("id") == recording.get("id"):
                     tracknumber = track.get("number", "")
 
-    # MusicBrainz has no clean per-track genre field; fall back to the
-    # recording's top community tag, if any (often empty -- normal).
+   
     genre = ""
     tag_list = recording.get("tag-list", [])
     if tag_list:
