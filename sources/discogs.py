@@ -1,14 +1,3 @@
-"""
-Discogs fallback lookups.
-
-This is only consulted for fields MusicBrainz couldn't fill in (e.g. a
-missing track number or genre) -- it never overwrites a field
-MusicBrainz already found. Requires a free personal access token from
-https://www.discogs.com/settings/developers, passed in via the
-DISCOGS_TOKEN environment variable. If no token is set, callers should
-just skip this module entirely.
-"""
-
 import requests
 
 SEARCH_URL = "https://api.discogs.com/database/search"

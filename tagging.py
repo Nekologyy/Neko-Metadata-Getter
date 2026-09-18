@@ -1,5 +1,3 @@
-"""Reading/writing metadata tags across MP3, MP4/M4A, and FLAC files."""
-
 import os
 
 try:
@@ -15,19 +13,19 @@ except ModuleNotFoundError as error:
         "The 'mutagen' package is required. Install it with "
         "'python -m pip install mutagen'."
     ) from error
-
+ 
 FIELDS = ["title", "artist", "album", "albumartist", "genre", "year", "tracknumber"]
 AUDIO_EXTENSIONS = (".mp3", ".m4a", ".mp4", ".flac")
-
-
+ 
+ 
 def detect_format(path):
     """Inspect the actual file contents rather than trusting the extension."""
     audio = MutagenFile(path)
     if audio is None:
         raise ValueError("Unsupported audio format or file is not an audio file.")
     return audio
-
-
+ 
+ 
 def read_existing_tags(path):
     """Pull whatever tags already exist, via mutagen's generic 'easy' keys."""
     tags = {}
@@ -41,8 +39,8 @@ def read_existing_tags(path):
     except Exception:
         pass
     return tags
-
-
+ 
+ 
 def guess_from_filename(path):
     """Fallback hint if tags are missing: 'Artist - Title.ext' naming."""
     name = os.path.splitext(os.path.basename(path))[0]
@@ -50,8 +48,8 @@ def guess_from_filename(path):
         artist, title = name.split(" - ", 1)
         return artist.strip(), title.strip()
     return "", name.strip()
-
-
+ 
+ 
 def write_tags(path, audio, final, cover_bytes):
     if isinstance(audio, MP3):
         try:
@@ -70,7 +68,7 @@ def write_tags(path, audio, final, cover_bytes):
                 encoding=3, mime="image/jpeg", type=3, desc="Cover", data=cover_bytes
             )
         id3.save(path, v2_version=3)
-
+ 
     elif isinstance(audio, MP4):
         tag = MP4(path)
         tag["\xa9nam"] = [final["title"]]
@@ -87,7 +85,7 @@ def write_tags(path, audio, final, cover_bytes):
         if cover_bytes:
             tag["covr"] = [MP4Cover(cover_bytes, imageformat=MP4Cover.FORMAT_JPEG)]
         tag.save()
-
+ 
     elif isinstance(audio, FLAC):
         audio["title"] = final["title"]
         audio["artist"] = final["artist"]
@@ -104,6 +102,6 @@ def write_tags(path, audio, final, cover_bytes):
             audio.clear_pictures()
             audio.add_picture(pic)
         audio.save()
-
+ 
     else:
         raise ValueError(f"Unsupported/unhandled format: {type(audio).__name__}")

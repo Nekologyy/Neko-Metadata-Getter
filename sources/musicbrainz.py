@@ -1,5 +1,3 @@
-"""MusicBrainz lookups: search, metadata extraction, and cover art."""
-
 try:
     import musicbrainzngs as mb
 except ModuleNotFoundError as error:
@@ -26,7 +24,7 @@ def search_musicbrainz(artist_hint, title_hint):
     if not recordings:
         return None
 
-    # Prefer a match that's actually tied to a released album
+   
     for rec in recordings:
         if rec.get("release-list"):
             return rec
@@ -34,11 +32,7 @@ def search_musicbrainz(artist_hint, title_hint):
 
 
 def is_confident_match(recording, artist_hint):
-    """
-    Heuristic for batch/auto mode: trust MusicBrainz's own match score,
-    and if we had an artist hint, require it to actually match the
-    credited artist. Anything below this bar should go to the user.
-    """
+    
     try:
         score = int(recording.get("ext:score", 0))
     except (TypeError, ValueError):
