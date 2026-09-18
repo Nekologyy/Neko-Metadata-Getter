@@ -3,7 +3,7 @@ import requests
 SEARCH_URL = "https://api.discogs.com/database/search"
 RELEASE_URL = "https://api.discogs.com/releases/{release_id}"
 
-# Fields this module knows how to fill in from Discogs data
+
 FILLABLE_FIELDS = ("genre", "year", "tracknumber")
 
 
@@ -43,12 +43,7 @@ def get_release_details(release_id, token):
 
 
 def fill_missing_fields(proposed, artist_hint, title_hint, token):
-    """
-    Given the metadata dict MusicBrainz already produced, query Discogs
-    only if something in FILLABLE_FIELDS is still empty, and only fill
-    in those specific gaps -- everything MusicBrainz already found is
-    left untouched.
-    """
+ 
     missing = [f for f in FILLABLE_FIELDS if not proposed.get(f)]
     if not missing or not token:
         return proposed
