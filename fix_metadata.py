@@ -9,7 +9,7 @@ try:
     from rich.prompt import Prompt
 except ModuleNotFoundError as error:
     raise ModuleNotFoundError(
-        "The 'rich' library is required to run this script. Please install it using 'pip install rich' and try again."
+        
     ) from error
 
 from sources.musicbrainz import (
